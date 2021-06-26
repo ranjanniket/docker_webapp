@@ -1,0 +1,53 @@
+<script>
+    function cmd() {
+        var i = document.getElementById("in1").value
+
+        var xhr = new XMLHttpRequest()
+
+        xhr.open("GET", "http://192.168.29.223/cgi-bin/cal.py?x=" + i, true);
+
+        xhr.send()
+
+        xhr.onload = function() {
+            var output = xhr.responseText;
+            document.getElementById("d1").innerHTML = output;
+        }
+    }
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="docker.css" >
+    <title>Docker</title>
+</head>
+
+<body>
+
+    <nav>
+        <ul class="navigation">
+          <li><a href="https://hub.docker.com/" target="__blank">Docker Hub</a></li>
+          <li><a href="./dockercmd.html">Docker</a></li>
+          <li><a href="https://docs.docker.com/get-started/" target="__blank">Docker Doc</a></li>
+        </ul>
+       </nav>
+
+        <div class="c1">
+        <p placeholder="Command...."><b>Enter Your Command : </b></p>
+        <input id="in1" />
+        <pre>
+                <div class="docker">
+                <button class="loading-button" onclick="cmd()">Run</button>
+                </div> 
+        </pre>
+        <pre>
+        <div class="rect" id="d1" style="overflow-y: scroll" style="overflow-x: scroll"
+        >Here we have the output...</div>
+        </pre>
+    </div>
+</body>
+
+</html>
